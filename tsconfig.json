@@ -6,6 +6,7 @@
     "baseUrl": "./",
     "paths": {
       "@shared/*": ["src/app/shared/*"],
+      "@data-access": ["src/app/data-access"],
       "@components/*": ["src/app/components/*"],
       "@services/*": ["src/app/services/*"]
     },

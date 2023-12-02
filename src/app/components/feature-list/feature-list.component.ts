@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ApiService } from '@services/api.service';
 import { CommonModule } from '@angular/common';
+import { PersonFacade } from '@data-access';
 
 @Component({
   selector: 'app-feature-list',
@@ -10,11 +11,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './feature-list.component.scss',
 })
 export class FeatureListComponent implements OnInit {
-  #api = inject(ApiService);
+  #facade = inject(PersonFacade);
 
-  persons = this.#api.personsList;
+  persons = this.#facade.personsList;
 
   ngOnInit(): void {
-    this.#api.personList$().subscribe();
+    this.#facade.personList$().subscribe();
   }
 }
