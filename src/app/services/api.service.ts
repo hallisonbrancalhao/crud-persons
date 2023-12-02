@@ -3,9 +3,9 @@ import { Injectable, inject, signal } from '@angular/core';
 import {
   CreatePersonDto,
   Person,
-  Response,
+  Results,
   UpdatePersonDto,
-} from '@shared/data-access';
+} from '@data-access';
 import { Observable, shareReplay, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -27,9 +27,9 @@ export class ApiService {
     return this.#person.asReadonly();
   }
 
-  personList$(): Observable<Response<Person>> {
+  personList$(): Observable<Results<Person>> {
     this.#persons.set(null);
-    return this.#http.get<Response<Person>>(this.#url()).pipe(
+    return this.#http.get<Results<Person>>(this.#url()).pipe(
       shareReplay(),
       tap((persons) => this.#persons.set(persons.results))
     );
