@@ -20,3 +20,12 @@
   </p>
 </li>
 }
+
+
+@if (createCard()) {
+<app-feature-create (showFormCard)="createCard.set($event)" />
+}
+
+@if (!createCard() && !alertCard()) {
+<button (click)="handleCreate()">Criar</button>
+}

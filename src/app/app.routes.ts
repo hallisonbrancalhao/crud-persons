@@ -4,9 +4,7 @@ export const routes: Routes = [
   {
     path: 'persons',
     loadChildren: () =>
-      import('./components/persons/persons.module').then(
-        (m) => m.PersonsModule
-      ),
+      import('./feature/feature.module').then((m) => m.FeatureModule),
   },
   {
     path: '',

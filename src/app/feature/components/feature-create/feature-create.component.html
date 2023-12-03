@@ -1,0 +1,36 @@
+@if(!alertCard())
+{<section class="card">
+  <h2 class="title">Criar novo cadastro</h2>
+
+  <form [formGroup]="form">
+    <label for="nome">Nome
+      <input type="text" formControlName="nome" id="nome" placeholder="Insira o nome" />
+    </label>
+
+    <label for="email">E-mail
+      <input type="email" formControlName="email" id="email" placeholder="Insira o e-mail" />
+    </label>
+
+    <label for="telefone">Telefone
+      <input type="text" formControlName="telefone" id="telefone" placeholder="Insira o telefone" />
+    </label>
+
+    <label for="dataNascimento">Data de nascimento
+
+      <input type="date" formControlName="dataNascimento" id="dataNascimento" />
+    </label>
+
+    <div class="actions">
+      <button (click)="submit()" class="btn btn__larger actions__submit">
+        Novo cadastro
+        <img class="actions__submit__icon" src="assets/icons/arrow.svg" alt="Seta para direita" />
+      </button>
+      <button (click)="cancel()" class="btn btn__transparent-full">Cancelar</button>
+    </div>
+  </form>
+</section>
+}
+@if(alertCard(); as alert) {
+<app-card-alert titleCard="Cadastro realizado com sucesso!" (showAlert)="alertCard.set($event)"
+  (toggleShowForm)="handleAlertClose($event)"></app-card-alert>
+}
