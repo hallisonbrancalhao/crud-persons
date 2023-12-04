@@ -1,0 +1,57 @@
+@use '../../../styles/palette' as palette;
+@use 'sass:map';
+
+.card-alert{
+  padding: 32px;
+  width: 406px;
+  border-radius: 10px;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__title{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    &__text{
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      h2{
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 100%
+      }
+
+      p{
+        color: map.get(palette.$colors, 'labels');
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 130%;
+      }
+    }
+
+    img {
+      cursor: pointer;
+      margin: -100px -15px 0 0;
+    }
+
+  }
+
+  &__buttons{
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+
+    &__cancel{
+      background-color: white;
+      width: 130px;
+      color: map.get(palette.$colors, 'labels');
+    }
+  }
+
+}

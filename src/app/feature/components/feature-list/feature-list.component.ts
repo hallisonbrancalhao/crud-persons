@@ -8,10 +8,11 @@ import {
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PersonFacade, UpdatePersonDto } from '@data-access';
+import { Person, PersonFacade, UpdatePersonDto } from '@data-access';
 import { FeatureCreateComponent } from '@components/feature-create/feature-create.component';
 import { RouterLink } from '@angular/router';
 import { FeatureUpdateComponent } from '@components/feature-update/feature-update.component';
+import { FeatureDeleteComponent } from '@components/feature-delete/feature-delete.component';
 
 @Component({
   selector: 'app-feature-list',
@@ -21,6 +22,7 @@ import { FeatureUpdateComponent } from '@components/feature-update/feature-updat
     FeatureCreateComponent,
     RouterLink,
     FeatureUpdateComponent,
+    FeatureDeleteComponent,
   ],
   templateUrl: './feature-list.component.html',
   styleUrl: './feature-list.component.scss',
@@ -29,10 +31,12 @@ export class FeatureListComponent implements OnInit {
   #facade = inject(PersonFacade);
   persons = this.#facade.personsList;
 
-  person = signal<UpdatePersonDto | null>(null);
+  person = signal<Partial<Person> | null>(null);
 
   createCard = signal(false);
   updateCard = signal(false);
+  deleteCard = signal(false);
+
   alertCard = signal(false);
 
   ngOnInit() {
@@ -64,6 +68,12 @@ export class FeatureListComponent implements OnInit {
   handleUpdate(person: UpdatePersonDto) {
     this.person.set(person);
     this.updateCard.set(!this.updateCard());
+    if (this.alertCard()) this.alertCard.set(false);
+  }
+
+  handleDelete(person: Person) {
+    this.person.set(person);
+    this.deleteCard.set(!this.deleteCard());
     if (this.alertCard()) this.alertCard.set(false);
   }
 }

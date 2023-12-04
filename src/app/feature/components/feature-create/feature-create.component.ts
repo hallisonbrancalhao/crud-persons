@@ -1,8 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  inject,
+  signal,
+} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardAlertComponent } from '@components/card-alert/card-alert.component';
 import { PersonForm } from '../../forms/create-person.form';
+import { CreatePersonDto, PersonFacade } from '@data-access';
 
 @Component({
   selector: 'app-feature-create',
@@ -12,7 +20,12 @@ import { PersonForm } from '../../forms/create-person.form';
   styleUrl: './feature-create.component.scss',
 })
 export class FeatureCreateComponent {
+  #facade = inject(PersonFacade);
+
   alertCard = signal(false);
+  alertMessage = signal('Cadastro realizado com sucesso!');
+  createError = this.#facade.createError;
+
   toggleShowForm = signal(false);
   form = new PersonForm().form;
 
@@ -30,11 +43,13 @@ export class FeatureCreateComponent {
 
   submit() {
     if (!this.form.valid) return;
-    this.alertCard.set(true);
+    this.#facade.create(this.form.value as CreatePersonDto).add(() => {
+      if (this.createError()) this.alertMessage.set(this.createError()!);
+      this.alertCard.set(true);
+    });
   }
 
   cancel() {
-    console.log('cancel');
     this.showFormCard.emit(false);
   }
 
