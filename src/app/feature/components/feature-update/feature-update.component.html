@@ -1,5 +1,4 @@
-@if(!alertCard())
-{<section class="card">
+<section class="card">
   <section class="card__title">
     <h2>Editar cadastro</h2>
     <img src="assets/icons/close.svg" (click)="cancel()" alt="Fechar formulário">
@@ -31,9 +30,3 @@
     </div>
   </form>
 </section>
-}
-
-@if(alertCard(); as alert) {
-<app-card-alert [titleCard]="alertMessage()" (showAlert)="alertCard.set($event)"
-  (toggleShowForm)="handleAlertClose($event)"></app-card-alert>
-}
