@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FeatureListComponent } from '@components/feature-list/feature-list.component';
+import { FeatureListComponent } from 'src/app/feature/components/feature-list/feature-list.component';
 
 @Component({
   selector: 'app-persons',

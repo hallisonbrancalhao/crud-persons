@@ -1,0 +1,35 @@
+<h3>Lista de pessoas</h3>
+
+@if (persons(); as data) {
+<ul>
+
+  @for(person of data; track person.id){
+  <li>{{person | json}}</li> - <button (click)="handleUpdate(person)">Editar</button>
+  } @empty {
+  <li>
+    <p>
+      Nenhuma pessoa encontrada.
+    </p>
+  </li>
+  }
+</ul>
+} @else {
+<li>
+  <p>
+    Carregando...
+  </p>
+</li>
+}
+
+
+@if (createCard()) {
+<app-feature-create (showFormCard)="createCard.set($event)" />
+}
+
+@if (updateCard()) {
+<app-feature-update (showFormCard)="updateCard.set($event)" [personUpdate]="person()" />
+}
+
+@if (!createCard() && !alertCard()) {
+<button (click)="handleCreate()">Criar</button>
+}
