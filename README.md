@@ -1,27 +1,29 @@
-# CrudPersons
+# CRUD Persons
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.5.
+## Sobre
 
-## Development server
+Este é um projeto de exemplo utilizando Angular 17 para construir um CRUD (Create, Read, Update, Delete) de pessoas.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Tecnologias Utilizadas
 
-## Code scaffolding
+- **Angular 17**: Framework para construção de aplicações web
+- **TypeScript**: Linguagem de programação que adiciona tipagem ao JavaScript
+- **Sass**: Pré-processador CSS
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Padrões do projeto
 
-## Build
+### Desing Patterns
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Repository**: Utilizado para abstrair a camada de acesso a dados, unificando todas as requisições com a API em um único lugar
+- **Facade**: Utilizado para fornecer uma interface unificada para um conjunto de interfaces em um subsistema, gerenciando os estados e as requisições da aplicação
 
-## Running unit tests
+### Padrão de código
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **Padrão de código**: [Angular Style Guide](https://angular.io/guide/styleguide)
+- **Padrão de nomenclatura**: [Angular Style Guide](https://angular.io/guide/styleguide#naming)
+- **Padrão de nomenclatura de arquivos**: [Angular Style Guide](https://angular.io/guide/styleguide#file-names-and-structure)
 
-## Running end-to-end tests
+### Padrão de commits
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- **Padrão de commits**: [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- **Padrão de nomenclatura de branches**: [Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) (com algumas adaptações) (ex: `feature/nome`, `docs/nome`, `refactor/nome`)
