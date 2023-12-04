@@ -9,7 +9,7 @@ import {
   signal,
 } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Person, PersonFacade, UpdatePersonDto } from '@data-access';
+import { PersonFacade, UpdatePersonDto } from '@data-access';
 import { PersonForm } from '../../forms/create-person.form';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardAlertComponent } from '@components/card-alert/card-alert.component';
@@ -24,7 +24,7 @@ import { CardAlertComponent } from '@components/card-alert/card-alert.component'
     CardAlertComponent,
   ],
   templateUrl: './feature-update.component.html',
-  styleUrl: './feature-update.component.scss',
+  styleUrl: '../feature-create/feature-create.component.scss',
 })
 export class FeatureUpdateComponent implements OnInit {
   route = inject(ActivatedRoute);

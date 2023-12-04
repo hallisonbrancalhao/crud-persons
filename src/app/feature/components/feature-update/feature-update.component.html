@@ -1,8 +1,9 @@
-{{person() | json}}
-
 @if(!alertCard())
 {<section class="card">
-  <h2 class="title">Editar cadastro</h2>
+  <section class="card__title">
+    <h2>Editar cadastro</h2>
+    <img src="assets/icons/close.svg" (click)="cancel()" alt="Fechar formulário">
+  </section>
 
   <form [formGroup]="form">
     <label for="nome">Nome
