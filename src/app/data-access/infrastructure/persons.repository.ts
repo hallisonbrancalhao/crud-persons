@@ -18,14 +18,14 @@ export class PersonRepository {
   }
 
   create(person: CreatePersonDto) {
-    return this.#http.post(this.#url(), { person });
+    return this.#http.post(this.#url(), person);
   }
 
-  update(id: string, person: UpdatePersonDto) {
-    return this.#http.patch(`${this.#url()}/${id}`, { person });
+  update(id: number, person: UpdatePersonDto) {
+    return this.#http.patch(`${this.#url()}/${id}`, person);
   }
 
-  delete(id: string) {
+  delete(id: number) {
     return this.#http.delete(`${this.#url()}/${id}`);
   }
 }

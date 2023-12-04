@@ -1,0 +1,22 @@
+<section class="card-alert">
+  <section class="card-alert__title">
+    <div class="card-alert__title__text">
+      <h2>Excluir cadastro</h2>
+      <p>O cadastro será excluído definitivamente.
+        Você tem certeza que deseja continuar?</p>
+    </div>
+    <img src="assets/icons/close.svg" (click)="close()" alt="Fechar formulário">
+  </section>
+  <section class="card-alert__buttons">
+    <button class="btn btn__simple card-alert__buttons__cancel" (click)="close()">Cancelar</button>
+    <button class="btn btn__simple" (click)="submit()">
+      <img src="assets/icons/trash.svg" alt="Excluir">
+      Excluir
+    </button>
+  </section>
+</section>
+
+@if(alertCard(); as alert) {
+<app-card-alert [titleCard]="alertMessage()" (showAlert)="alertCard.set($event)"
+  (toggleShowForm)="handleAlertClose($event)"></app-card-alert>
+}

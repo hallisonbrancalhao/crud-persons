@@ -2,7 +2,8 @@ import { inject, signal } from '@angular/core';
 import { CreatePersonDto, UpdatePersonDto } from '../dtos';
 import { Person } from '../entities';
 import { PersonRepository } from '../infrastructure';
-import { shareReplay, tap } from 'rxjs';
+import { catchError, shareReplay, tap } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export class PersonFacade {
   #person = signal<Person | null>(null);
@@ -34,14 +35,23 @@ export class PersonFacade {
   }
 
   create(person: CreatePersonDto) {
-    return this.#service.create(person);
+    return this.#service.create(person).pipe(
+      shareReplay(),
+      catchError((err: HttpErrorResponse) => err.error.message)
+    );
   }
 
-  update(id: string, person: UpdatePersonDto) {
-    return this.#service.update(id, person);
+  update(id: number, person: UpdatePersonDto) {
+    return this.#service.update(id, person).pipe(
+      shareReplay(),
+      catchError((err: HttpErrorResponse) => err.error.message)
+    );
   }
 
-  delete(id: string) {
-    return this.#service.delete(id);
+  delete(id: number) {
+    return this.#service.delete(id).pipe(
+      shareReplay(),
+      catchError((err: HttpErrorResponse) => err.error.message)
+    );
   }
 }

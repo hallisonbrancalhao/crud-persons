@@ -29,7 +29,7 @@
           <td>{{person.birthDate | date:"dd/MM/yyyy"}}</td>
           <td class="persons__table__actions">
             <img src="assets/icons/pen.svg" alt="Editar" (click)="handleUpdate(person)">
-            <img src="assets/icons/trash-light.svg" alt="Excluir">
+            <img src="assets/icons/trash-light.svg" alt="Excluir" (click)="handleDelete(person)">
           </td>
         </tr>
         }
@@ -47,5 +47,11 @@
 @if (updateCard()) {
 <section class="pop-up">
   <app-feature-update (showFormCard)="updateCard.set($event)" [personUpdate]="person()" />
+</section>
+}
+
+@if (deleteCard()) {
+<section class="pop-up">
+  <app-feature-delete (showFormCard)="deleteCard.set($event)" [id]="person()?.id" />
 </section>
 }

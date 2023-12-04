@@ -33,6 +33,6 @@
 </section>
 }
 @if(alertCard(); as alert) {
-<app-card-alert titleCard="Cadastro realizado com sucesso!" (showAlert)="alertCard.set($event)"
+<app-card-alert [titleCard]="alertMessage()" (showAlert)="alertCard.set($event)"
   (toggleShowForm)="handleAlertClose($event)"></app-card-alert>
 }
