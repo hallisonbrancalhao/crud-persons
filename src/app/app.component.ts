@@ -6,7 +6,15 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet],
-  template: '<router-outlet />',
+  template: `
+    <header class="header">
+      <img src="assets/images/white-logo.svg" alt="Logo 4Asset" />
+    </header>
+    <main class="main">
+      <router-outlet></router-outlet>
+    </main>
+  `,
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'crud-persons';
