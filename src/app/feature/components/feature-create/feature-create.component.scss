@@ -1,0 +1,86 @@
+@use '../../../styles/palette' as palette;
+@use 'sass:map';
+
+.card {
+  padding: 42px 32px;
+  width: 466px;
+  background-color: white;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+  align-items: flex-start;
+
+  &__close{
+    position: relative;
+    top: 0;
+    right: 0;
+    margin: 16px;
+    cursor: pointer;
+  }
+
+  &__title{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    h2{
+      font-size: 28px;
+      font-weight: 700;
+      color: map.get(palette.$colors, 'titles');
+      line-height: 100%;
+    }
+
+    img {
+      cursor: pointer;
+      margin: -64px -19px 0 0;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    label {
+      display: flex;
+      flex-direction: column;
+      font-size: 16px;
+      gap: 5px;
+      font-weight: 600;
+      color: map.get(palette.$colors, 'labels');
+    }
+    input{
+      border-radius: 2px;
+      border: none;
+      padding: 14px;
+      background-color: map.get(palette.$colors, 'inputs');
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 300;
+    }
+    ::placeholder{
+      color: map.get(palette.$colors, 'placeholders');
+    }
+
+    .actions{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+
+      &__submit{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__icon{
+         position: fixed;
+          margin-left: 250px;
+        }
+      }
+
+    }
+  }
+}

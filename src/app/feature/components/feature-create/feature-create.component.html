@@ -1,6 +1,9 @@
 @if(!alertCard())
 {<section class="card">
-  <h2 class="title">Criar novo cadastro</h2>
+  <section class="card__title">
+    <h2>Criar novo cadastro</h2>
+    <img src="assets/icons/close.svg" (click)="cancel()" alt="Fechar formulário">
+  </section>
 
   <form [formGroup]="form">
     <label for="name">Nome

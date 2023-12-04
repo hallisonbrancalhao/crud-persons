@@ -44,6 +44,26 @@
     }
   }
 
+  &__simple{
+    color: white;
+    display: flex;
+    width: 148px;
+    padding: 9px 20px;
+    justify-content: center;
+    background-color: map.get(palette.$colors, 'dark');
+    align-items: center;
+    gap: 16px;
+    line-height: 24px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
+    flex-shrink: 0;
+
+    &:hover{
+      background-color: map.get(palette.$hover, 'dark');
+    }
+  }
+
   &__transparent-outline {
     border: 1px solid #FFF;
     color: #FFF;

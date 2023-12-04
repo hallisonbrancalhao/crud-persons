@@ -1,0 +1,99 @@
+@use '../../../styles/palette' as palette;
+@use 'sass:map';
+
+.persons{
+  min-width: 823px;
+  padding: 72px 0;
+
+  &__header{
+    display: flex;
+    justify-content: space-between;
+
+    h2{
+      font-size: 44px;
+      font-weight: 800;
+      color: #FFF;
+    }
+
+    button{
+      gap: 1rem;
+      padding: 0.2rem 1rem;
+
+      &:hover{
+        background-color: map.get(palette.$colors, 'primary');
+        border: 1px solid map.get(palette.$colors, 'primary');
+      }
+    }
+  }
+
+  &__table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 32px;
+    overflow: hidden;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+    thead{
+      tr{
+        display: flex;
+        background-color: map.get(palette.$colors, 'dark');
+        border: 1px solid map.get(palette.$colors, 'dark');
+        color: #FFF;
+        gap: 16px;
+        padding: 16px 56px;
+        th{
+          min-width: 144px;
+          font-weight: 600;
+          text-align: left;
+        }
+      }
+    }
+
+    tbody{
+      background-color: map.get(palette.$colors, 'light-secondary');
+      border: 1px solid map.get(palette.$colors, 'light-tertiary');
+      tr{
+        margin: 32px 24px;
+        display: flex;
+        gap:16px;
+        padding: 0px 32px 16px 32px;
+        border-bottom: .1rem solid map.get(palette.$colors, 'light-tertiary');
+
+        td{
+          padding: 16px 0px;
+          text-align: left;
+          width: 144px;
+          overflow: hidden;
+          font-size: 16px;
+          font-weight: 600;
+          color: map.get(palette.$colors, 'dark')
+        }
+      }
+    }
+
+    &__actions{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+
+      img {
+        cursor: pointer;
+      }
+    }
+
+  }
+}
+
+.pop-up{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.62);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

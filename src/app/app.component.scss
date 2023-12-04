@@ -1,0 +1,22 @@
+@use './styles/palette' as palette;
+@use 'sass:map';
+
+.header {
+  background-color: map.get(palette.$colors, 'dark');
+  padding: 42px 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.main {
+  background-image: url('/assets/images/background.jpg');
+  background-color: rgba(19, 30, 35, 0.86);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: calc(100vh - 128px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
