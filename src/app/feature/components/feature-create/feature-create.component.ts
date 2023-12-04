@@ -24,6 +24,8 @@ export class FeatureCreateComponent {
 
   alertCard = signal(false);
   alertMessage = signal('Cadastro realizado com sucesso!');
+  createError = this.#facade.createError;
+
   toggleShowForm = signal(false);
   form = new PersonForm().form;
 
@@ -41,8 +43,10 @@ export class FeatureCreateComponent {
 
   submit() {
     if (!this.form.valid) return;
-    this.#facade.create(this.form.value as CreatePersonDto);
-    this.alertCard.set(true);
+    this.#facade.create(this.form.value as CreatePersonDto).add(() => {
+      if (this.createError()) this.alertMessage.set(this.createError()!);
+      this.alertCard.set(true);
+    });
   }
 
   cancel() {

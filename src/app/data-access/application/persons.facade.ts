@@ -2,7 +2,7 @@ import { inject, signal } from '@angular/core';
 import { CreatePersonDto, UpdatePersonDto } from '../dtos';
 import { Person } from '../entities';
 import { PersonRepository } from '../infrastructure';
-import { catchError, shareReplay, tap } from 'rxjs';
+import { catchError, concatMap, shareReplay, tap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
 export class PersonFacade {
@@ -34,24 +34,51 @@ export class PersonFacade {
     );
   }
 
+  #setCreateError = signal<string | null>(null);
+  get createError() {
+    return this.#setCreateError.asReadonly();
+  }
   create(person: CreatePersonDto) {
-    return this.#service.create(person).pipe(
-      shareReplay(),
-      catchError((err: HttpErrorResponse) => err.error.message)
-    );
+    this.#setCreateError.set(null);
+    return this.#service
+      .create(person)
+      .pipe(concatMap(() => this.personList$()))
+      .subscribe({
+        error: (error: HttpErrorResponse) => {
+          this.#setCreateError.set(error.error.message);
+        },
+      });
   }
 
+  #setUpdateError = signal<string | null>(null);
+  get updateError() {
+    return this.#setUpdateError.asReadonly();
+  }
   update(id: number, person: UpdatePersonDto) {
-    return this.#service.update(id, person).pipe(
-      shareReplay(),
-      catchError((err: HttpErrorResponse) => err.error.message)
-    );
+    this.#setUpdateError.set(null);
+    return this.#service
+      .update(id, person)
+      .pipe(concatMap(() => this.personList$()))
+      .subscribe({
+        error: (error: HttpErrorResponse) => {
+          this.#setUpdateError.set(error.error.message);
+        },
+      });
   }
 
+  #setDeleteError = signal<string | null>(null);
+  get deleteError() {
+    return this.#setDeleteError.asReadonly();
+  }
   delete(id: number) {
-    return this.#service.delete(id).pipe(
-      shareReplay(),
-      catchError((err: HttpErrorResponse) => err.error.message)
-    );
+    this.#setDeleteError.set(null);
+    return this.#service
+      .delete(id)
+      .pipe(concatMap(() => this.personList$()))
+      .subscribe({
+        error: (error: HttpErrorResponse) => {
+          this.#setDeleteError.set(error.error.message);
+        },
+      });
   }
 }

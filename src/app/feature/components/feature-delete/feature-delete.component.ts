@@ -19,12 +19,13 @@ import { PersonFacade } from '@data-access';
 export class FeatureDeleteComponent {
   #facade = inject(PersonFacade);
   #id = signal<number | null>(null);
+
   alertMessage = signal('Cadastro excluído com sucesso!');
   alertCard = signal(false);
+  deleteError = this.#facade.deleteError;
 
   @Input()
   set id(value: number | undefined) {
-    console.log('FeatureDeleteComponent : setid : value:', value);
     if (!value) return;
     this.#id.set(value);
   }
@@ -40,9 +41,10 @@ export class FeatureDeleteComponent {
 
   submit() {
     if (!this.#id()) return;
-    this.#facade.delete(this.#id()!);
-    this.alertCard.set(true);
-    this.showFormCard.emit(false);
+    this.#facade.delete(this.#id()!).add(() => {
+      if (this.deleteError()) this.alertMessage.set(this.deleteError()!);
+      this.alertCard.set(true);
+    });
   }
 
   close() {

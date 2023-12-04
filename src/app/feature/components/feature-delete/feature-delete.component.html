@@ -1,3 +1,4 @@
+@if(!alertCard()) {
 <section class="card-alert">
   <section class="card-alert__title">
     <div class="card-alert__title__text">
@@ -15,6 +16,7 @@
     </button>
   </section>
 </section>
+}
 
 @if(alertCard(); as alert) {
 <app-card-alert [titleCard]="alertMessage()" (showAlert)="alertCard.set($event)"
