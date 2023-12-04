@@ -1,0 +1,28 @@
+.card-alert{
+  &__title{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    h2{
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 100%
+    }
+
+    img {
+      cursor: pointer;
+      margin: -64px -19px 0 0;
+    }
+
+  }
+  padding: 32px;
+  width: 406px;
+  border-radius: 10px;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+}

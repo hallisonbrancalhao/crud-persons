@@ -1,0 +1,80 @@
+@use './palette' as palette;
+@use 'sass:map';
+
+.btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &__larger{
+    color: #FFF;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    background-color: map.get(palette.$colors, 'dark');
+    gap: 32px;
+    width: 462px;
+    height: 52px;
+
+    &:hover{
+      background-color: map.get(palette.$hover, 'dark');
+    }
+  }
+
+  &__smaller{
+    color: #FFF;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 21px;
+    background-color: map.get(palette.$colors, 'dark');
+    gap: 16px;
+    height: 42px;
+
+    &:hover{
+      background-color: map.get(palette.$hover, 'dark');
+    }
+  }
+
+  &__simple{
+    color: white;
+    display: flex;
+    width: 148px;
+    padding: 9px 20px;
+    justify-content: center;
+    background-color: map.get(palette.$colors, 'dark');
+    align-items: center;
+    gap: 16px;
+    line-height: 24px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
+    flex-shrink: 0;
+
+    &:hover{
+      background-color: map.get(palette.$hover, 'dark');
+    }
+  }
+
+  &__transparent-outline {
+    border: 1px solid #FFF;
+    color: #FFF;
+    background-color: transparent;
+  }
+
+  &__transparent-full {
+    border: none;
+    color: map.get(palette.$colors, 'labels');
+    background-color: transparent;
+    padding: 10px 44px;
+    font-weight: 600;
+  }
+}
