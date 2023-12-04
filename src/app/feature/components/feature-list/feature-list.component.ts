@@ -14,11 +14,14 @@ import { RouterLink } from '@angular/router';
 import { FeatureUpdateComponent } from '@components/feature-update/feature-update.component';
 import { FeatureDeleteComponent } from '@components/feature-delete/feature-delete.component';
 
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
+
 @Component({
   selector: 'app-feature-list',
   standalone: true,
   imports: [
     CommonModule,
+    DialogModule,
     FeatureCreateComponent,
     RouterLink,
     FeatureUpdateComponent,
@@ -29,6 +32,7 @@ import { FeatureDeleteComponent } from '@components/feature-delete/feature-delet
 })
 export class FeatureListComponent implements OnInit {
   #facade = inject(PersonFacade);
+  dialog = inject(Dialog);
   persons = this.#facade.personsList;
 
   person = signal<Partial<Person> | null>(null);
@@ -61,8 +65,9 @@ export class FeatureListComponent implements OnInit {
   }
 
   handleCreate() {
-    this.createCard.set(!this.createCard());
-    if (this.alertCard()) this.alertCard.set(false);
+    const dialogRef = this.dialog.open(FeatureCreateComponent, {});
+
+    dialogRef.closed.subscribe((result) => {});
   }
 
   handleUpdate(person: UpdatePersonDto) {

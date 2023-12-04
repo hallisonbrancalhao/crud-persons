@@ -12,6 +12,8 @@ import { CardAlertComponent } from '@components/card-alert/card-alert.component'
 import { PersonForm } from '../../forms/create-person.form';
 import { CreatePersonDto, PersonFacade } from '@data-access';
 
+import { DialogRef } from '@angular/cdk/dialog';
+
 @Component({
   selector: 'app-feature-create',
   standalone: true,
@@ -21,6 +23,7 @@ import { CreatePersonDto, PersonFacade } from '@data-access';
 })
 export class FeatureCreateComponent {
   #facade = inject(PersonFacade);
+  dialog = inject(DialogRef);
 
   alertCard = signal(false);
   alertMessage = signal('Cadastro realizado com sucesso!');
@@ -50,7 +53,7 @@ export class FeatureCreateComponent {
   }
 
   cancel() {
-    this.showFormCard.emit(false);
+    this.dialog.close();
   }
 
   handleAlertClose(value: boolean) {
