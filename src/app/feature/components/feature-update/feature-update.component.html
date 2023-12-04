@@ -1,10 +1,12 @@
+{{person() | json}}
+
 @if(!alertCard())
 {<section class="card">
-  <h2 class="title">Criar novo cadastro</h2>
+  <h2 class="title">Editar cadastro</h2>
 
   <form [formGroup]="form">
-    <label for="name">Nome
-      <input type="text" formControlName="name" id="name" placeholder="Insira o nome" />
+    <label for="nome">Nome
+      <input type="text" formControlName="name" id="nome" placeholder="Insira o nome" />
     </label>
 
     <label for="email">E-mail
@@ -16,12 +18,12 @@
     </label>
 
     <label for="birthDate">Data de nascimento
-      <input type="date" formControlName="birthDate" id="birthDate" />
+      <input type="date" formControlName="birthDate" id="birthDate">
     </label>
 
     <div class="actions">
       <button (click)="submit()" class="btn btn__larger actions__submit">
-        Novo cadastro
+        Salvar alterações
         <img class="actions__submit__icon" src="assets/icons/arrow.svg" alt="Seta para direita" />
       </button>
       <button (click)="cancel()" class="btn btn__transparent-full">Cancelar</button>
@@ -29,7 +31,8 @@
   </form>
 </section>
 }
+
 @if(alertCard(); as alert) {
-<app-card-alert titleCard="Cadastro realizado com sucesso!" (showAlert)="alertCard.set($event)"
+<app-card-alert titleCard="Cadastro editado com sucesso!" (showAlert)="alertCard.set($event)"
   (toggleShowForm)="handleAlertClose($event)"></app-card-alert>
 }

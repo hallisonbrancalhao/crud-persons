@@ -5,9 +5,9 @@ export class PersonForm {
   #fb = inject(FormBuilder);
 
   form = this.#fb.group({
-    nome: ['', [Validators.required]],
+    name: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
-    telefone: ['', [Validators.required, Validators.minLength(11)]],
-    dataNascimento: ['', [Validators.required]],
+    phone: ['', [Validators.required, Validators.minLength(11)]],
+    birthDate: [new Date(), [Validators.required]],
   });
 }

@@ -14,6 +14,7 @@ import { PersonForm } from '../../forms/create-person.form';
 export class FeatureCreateComponent {
   alertCard = signal(false);
   toggleShowForm = signal(false);
+  form = new PersonForm().form;
 
   @Output() showFormCard = new EventEmitter<boolean>();
 
@@ -27,8 +28,6 @@ export class FeatureCreateComponent {
     this.showFormCard.emit(value);
   }
 
-  form = new PersonForm().form;
-
   submit() {
     if (!this.form.valid) return;
     this.alertCard.set(true);
@@ -39,10 +38,8 @@ export class FeatureCreateComponent {
     this.showFormCard.emit(false);
   }
 
-  handleAlertClose(showList: boolean) {
-    if (showList) {
-      this.alertCard.set(false);
-      this.showFormCard.emit(false);
-    }
+  handleAlertClose(value: boolean) {
+    this.alertCard.set(value);
+    this.showFormCard.emit(false);
   }
 }

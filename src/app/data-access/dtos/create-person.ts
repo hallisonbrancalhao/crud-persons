@@ -1,6 +1,6 @@
 export interface CreatePersonDto {
-  nome: string;
+  name: string;
   email: string;
-  telefone: number;
-  dataNascimento: Date;
+  phone: string;
+  birthDate: Date;
 }

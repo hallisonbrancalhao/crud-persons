@@ -4,7 +4,7 @@
 <ul>
 
   @for(person of data; track person.id){
-  <li>{{person | json}}</li>
+  <li>{{person | json}}</li> - <button (click)="handleUpdate(person)">Editar</button>
   } @empty {
   <li>
     <p>
@@ -24,6 +24,10 @@
 
 @if (createCard()) {
 <app-feature-create (showFormCard)="createCard.set($event)" />
+}
+
+@if (updateCard()) {
+<app-feature-update (showFormCard)="updateCard.set($event)" [personUpdate]="person()" />
 }
 
 @if (!createCard() && !alertCard()) {

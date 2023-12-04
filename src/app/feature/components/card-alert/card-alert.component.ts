@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-card-alert',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './card-alert.component.html',
   styleUrl: './card-alert.component.scss',
 })
@@ -20,7 +21,6 @@ export class CardAlertComponent {
   }
 
   close() {
-    this.showAlert.emit(false);
-    this.toggleShowForm.emit(true);
+    this.toggleShowForm.emit(false);
   }
 }
