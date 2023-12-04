@@ -1,26 +1,18 @@
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { DIALOG_DATA, DialogModule, DialogRef } from '@angular/cdk/dialog';
+import { Component, inject } from '@angular/core';
 
 @Component({
   selector: 'app-card-alert',
   standalone: true,
-  imports: [RouterLink],
+  imports: [DialogModule],
   templateUrl: './card-alert.component.html',
   styleUrl: './card-alert.component.scss',
 })
 export class CardAlertComponent {
-  title = signal('');
-  @Output() showAlert = new EventEmitter<boolean>();
-  @Output() toggleShowForm = new EventEmitter<boolean>();
-
-  @Input({
-    required: true,
-  })
-  set titleCard(value: string) {
-    this.title.set(value);
-  }
+  data = inject(DIALOG_DATA) as { title: string };
+  dialog = inject(DialogRef);
 
   close() {
-    this.toggleShowForm.emit(false);
+    this.dialog.close();
   }
 }

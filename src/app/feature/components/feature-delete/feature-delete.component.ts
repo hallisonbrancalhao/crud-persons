@@ -1,12 +1,6 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  inject,
-  signal,
-} from '@angular/core';
 import { CardAlertComponent } from '@components/card-alert/card-alert.component';
+import { DIALOG_DATA, Dialog, DialogRef } from '@angular/cdk/dialog';
+import { Component, inject, signal } from '@angular/core';
 import { PersonFacade } from '@data-access';
 
 @Component({
@@ -18,41 +12,32 @@ import { PersonFacade } from '@data-access';
 })
 export class FeatureDeleteComponent {
   #facade = inject(PersonFacade);
-  #id = signal<number | null>(null);
+  data = inject(DIALOG_DATA) as { id: number };
 
+  dialog = inject(DialogRef);
+  alertDialog = inject(Dialog);
   alertMessage = signal('Cadastro excluído com sucesso!');
-  alertCard = signal(false);
   deleteError = this.#facade.deleteError;
 
-  @Input()
-  set id(value: number | undefined) {
-    if (!value) return;
-    this.#id.set(value);
-  }
-
-  @Input()
-  set alert(value: boolean) {
-    this.alertCard.set(value);
-  }
-
-  @Output() showFormCard = new EventEmitter<boolean>();
-  @Output() showDelete = new EventEmitter<boolean>();
-  @Output() toggleShowForm = new EventEmitter<boolean>();
-
   submit() {
-    if (!this.#id()) return;
-    this.#facade.delete(this.#id()!).add(() => {
+    if (!this.data.id) return;
+    this.#facade.delete(this.data.id).add(() => {
       if (this.deleteError()) this.alertMessage.set(this.deleteError()!);
-      this.alertCard.set(true);
+      this.dialog.close();
+      this.openAlertDialog();
     });
   }
 
   close() {
-    this.showFormCard.emit(false);
+    this.dialog.close();
   }
 
-  handleAlertClose(value: boolean) {
-    this.alertCard.set(value);
-    this.showFormCard.emit(false);
+  openAlertDialog() {
+    const dialogRef = this.alertDialog.open(CardAlertComponent, {
+      data: {
+        title: this.alertMessage(),
+      },
+    });
+    dialogRef.closed.subscribe();
   }
 }

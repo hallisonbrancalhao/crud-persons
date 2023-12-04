@@ -1,6 +1,7 @@
 @use './app/styles/palette' as palette;
 @use './app/styles/button' as button;
 
+@import '@angular/cdk/overlay-prebuilt.css';
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap');
 
 html, body, div, span, applet, object, iframe,

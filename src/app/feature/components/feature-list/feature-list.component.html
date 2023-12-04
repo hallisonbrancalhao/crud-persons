@@ -1,57 +1,37 @@
-<ng-container>
-  <section class="persons">
-    <div class="persons__header">
-      <h2>Cadastro de pessoas</h2>
+<section class="persons">
+  <div class="persons__header">
+    <h2>Cadastro de pessoas</h2>
 
-      <button (click)="handleCreate()" class="btn btn__transparent-outline btn__smaller">
-        <span>Novo cadastro</span>
-        <img src="assets/icons/short-arrow.svg" alt="Flecha do botão de criar">
-      </button>
+    <button (click)="handleCreate()" class="btn btn__transparent-outline btn__smaller">
+      <span>Novo cadastro</span>
+      <img src="assets/icons/short-arrow.svg" alt="Flecha do botão de criar">
+    </button>
 
-    </div>
+  </div>
 
-    <table class="persons__table">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>E-mail</th>
-          <th>Telefone</th>
-          <th>Data de nascimento</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (person of persons(); track $index) {
-        <tr>
-          <td>{{person.name}}</td>
-          <td>{{person.email}}</td>
-          <td>{{person.phone}}</td>
-          <td>{{person.birthDate | date:"dd/MM/yyyy"}}</td>
-          <td class="persons__table__actions">
-            <img src="assets/icons/pen.svg" alt="Editar" (click)="handleUpdate(person)">
-            <img src="assets/icons/trash-light.svg" alt="Excluir" (click)="handleDelete(person)">
-          </td>
-        </tr>
-        }
-      </tbody>
-    </table>
-  </section>
-</ng-container>
-
-@if (createCard()) {
-<section class="pop-up">
-  <app-feature-create (showFormCard)="createCard.set($event)" />
+  <table class="persons__table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Telefone</th>
+        <th>Data de nascimento</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (person of persons(); track $index) {
+      <tr>
+        <td>{{person.name}}</td>
+        <td>{{person.email}}</td>
+        <td>{{person.phone}}</td>
+        <td>{{person.birthDate | date:"dd/MM/yyyy"}}</td>
+        <td class="persons__table__actions">
+          <img src="assets/icons/pen.svg" alt="Editar" (click)="handleUpdate(person)">
+          <img src="assets/icons/trash-light.svg" alt="Excluir" (click)="handleDelete(person)">
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
 </section>
-}
-
-@if (updateCard()) {
-<section class="pop-up">
-  <app-feature-update (showFormCard)="updateCard.set($event)" [personUpdate]="person()" />
-</section>
-}
-
-@if (deleteCard()) {
-<section class="pop-up">
-  <app-feature-delete (showFormCard)="deleteCard.set($event)" [id]="person()?.id" />
-</section>
-}

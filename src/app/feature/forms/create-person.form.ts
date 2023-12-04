@@ -7,7 +7,7 @@ export class PersonForm {
   form = this.#fb.group({
     name: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
-    phone: ['', [Validators.required, Validators.minLength(11)]],
+    phone: ['', [Validators.required]],
     birthDate: [new Date(), [Validators.required]],
   });
 }

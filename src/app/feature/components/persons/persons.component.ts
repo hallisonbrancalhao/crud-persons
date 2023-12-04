@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FeatureListComponent } from 'src/app/feature/components/feature-list/feature-list.component';
 
@@ -6,7 +6,6 @@ import { FeatureListComponent } from 'src/app/feature/components/feature-list/fe
   selector: 'app-persons',
   standalone: true,
   imports: [RouterOutlet, FeatureListComponent],
-  templateUrl: './persons.component.html',
-  styleUrl: './persons.component.scss',
+  template: '<app-feature-list />',
 })
 export class PersonsComponent {}
